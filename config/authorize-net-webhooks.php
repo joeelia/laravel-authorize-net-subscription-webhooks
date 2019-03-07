@@ -15,8 +15,8 @@ return [
      * You can find a list of Stripe webhook types here:
      * https://developer.authorize.net/api/reference/features/webhooks.html#Event_Types_and_Payloads
      */
-    'webHookPostRoute' => '/authnet/webhook',
-    
+    'webhookPostRoute' => '/authnet/webhook',
+
     'eventWebhooks' => [
         'net_authorize_customer_created' => False, //App\WebhookJobs\NetAuthorizeCustomerCreated::class,
         'net_authorize_customer_deleted' => False, //App\WebhookJobs\NetAuthorizeCustomerDeleted::class,
