@@ -1,0 +1,55 @@
+
+    public function webhookSubscriptionControl($eventPayload)
+    {
+        $amount = $eventPayload['payload']['amount'];
+        $transactionId = $eventPayload['payload']['id'];
+        $subscriptionName = $eventPayload['payload']['name'];
+        $subscriptionStatus = $eventPayload['payload']['status'];
+        $customerProfileId = $eventPayload['payload']['profile']['customerProfileId'];
+        $customerPaymentProfileId = $eventPayload['payload']['profile']['customerPaymentProfileId'];
+        $customerShippingAddressId =$eventPayload['payload']['profile']['customerShippingAddressId'];
+
+        if ($subscriptionStatus != "active"){
+            //Subscription is NOT ACTIVE!
+            $this->message("Subscription is ". $subscriptionStatus . " for customerProfileId: ".$customerProfileId.". They WERE paying $".$amount);
+            //OOOP
+        } elseif ($subscriptionStatus = "active") {
+            //Subscription IS ACTIVE!
+            $this->message("Subscription is ". $subscriptionStatus . " for customerProfileId: ".$customerProfileId.". They are paying $".$amount. "a month!");
+            $things="subscription things";
+            return $things;
+        } else{
+            $this->message("Subscription is ". $subscriptionStatus . " for customerProfileId: ".$customerProfileId);
+        }
+    }
+
+    public function webhookTransactionControl($eventPayload)
+    {
+        $amount = $eventPayload['payload']['authAmount'];
+        $responseCode = $eventPayload['payload']['responseCode'];
+        $transactionId = $eventPayload['payload']['id'];
+        if (!$responseCode == 1){
+            //Transcation was NOT approved
+            switch ($responseCode) {
+                case 2:
+                    $this->message("Declined Transcation");
+                    break;
+                case 4:
+                    $this->message("FRAUD Transcation");
+                    break;
+                case 11:
+                    $this->message("Declined Transcation");
+                    break;
+            }
+        } else {
+            $AuthorizeNet = new AuthorizeNet;
+            $AuthorizeNet->getTransactionDetails($transactionId);
+            if (!isset($obj['subscription']['id'])){
+                //payment captured from one time purchase
+                $this->message("Transcation came through with amount of ".$amount.". As a one time payment!");
+            } else {
+                //payment captured from ARB
+                $this->message("Transcation came through with amount of ".$amount."from subscriber".$obj['subscription']['id']);
+            }
+        }
+    }

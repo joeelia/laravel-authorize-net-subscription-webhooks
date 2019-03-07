@@ -1,0 +1,57 @@
+{
+    "name": "joeelia/laravel-authorize-net-subscription-webhooks",
+    "description": "Authorize.Net Recurring Subscription Webhooks",
+    "keywords": [
+        "joeelia",
+        "authorize-net",
+        "reccuring-billing",
+        "webhooks"
+    ],
+    "homepage": "https://github.com/joeelia/authorize-net",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Joe Elia",
+            "email": "mrjoeelia@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": ">=5.7",
+        "authorizenet/authorizenet": "^2.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Joeelia\\AuthorizeNet\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Joeelia\\AuthorizeNet\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Joeelia\\AuthorizeNet\\AuthorizeNetServiceProvider"
+            ],
+            "aliases": {
+                "AuthorizeNet": "Joeelia\\AuthorizeNet\\AuthorizeNetFacade"
+            }
+        }
+    }
+}

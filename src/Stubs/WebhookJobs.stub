@@ -1,0 +1,10 @@
+<?php
+
+namespace App\WebhookJobs;
+
+class {{class}}
+{
+    public function __invoke($eventPayload) {
+    	//
+    }
+}
