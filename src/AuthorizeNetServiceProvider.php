@@ -51,6 +51,6 @@ class AuthorizeNetServiceProvider extends ServiceProvider
 
     protected function registerRoutes()
     {
-        Route::post('api/auth/webhook/package', AuthorizeNetWebhooksController::class);
+        Route::post(config('authorize-net-webhooks.webhookPostRoute'), AuthorizeNetWebhooksController::class);
     }
 }
