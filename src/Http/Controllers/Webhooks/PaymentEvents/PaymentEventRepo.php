@@ -83,19 +83,4 @@ class PaymentEventRepo
             $this->message("Subscription is ". $subscriptionStatus . " for customerProfileId: ".$customerProfileId);
         }
     }
-
-    public function message($text){
-        $url1 = "https://api.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text=";
-        $url = $url1 . $text;
-        $ch = curl_init();
-        $optArray = array(
-                CURLOPT_URL => $url,
-                CURLOPT_RETURNTRANSFER => true
-        );
-        curl_setopt_array($ch, $optArray);
-        $result = curl_exec($ch);
-        curl_close($ch);
-    }
-    
-
 }

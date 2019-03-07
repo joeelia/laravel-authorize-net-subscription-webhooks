@@ -13,7 +13,6 @@ use net\authorize\api\controller as AnetController;
 class SubscriptionEventRepo
 {
     public function created($eventPayload){
-        $this->message("created subscription works!!");
         /*
         {  
             "notificationId":"43593773-f0c0-4540-afea-698a9ee7fac4",
@@ -40,36 +39,30 @@ class SubscriptionEventRepo
     }
 
     public function cancelled($eventPayload){
-        $this->message("cancelledsubscription works!!");
         if(config('authorize-net-webhooks.eventWebhooks.net_authorize_customer_subscription_cancelled') === True){
             New \App\WebhookJobs\NetAuthorizeCustomerSubscriptionCancelled($eventPayload);
         }
     }
 
     public function expiring($eventPayload){
-        $this->message("expiring  subscription works!!");
         if(config('authorize-net-webhooks.eventWebhooks.net_authorize_customer_subscription_expiring') === True){
             New \App\WebhookJobs\NetAuthorizeCustomerSubscriptionExpiring($eventPayload);
         }
     }
 
     public function suspended($eventPayload){
-        $this->message("suspended subscription works!!");
         if(config('authorize-net-webhooks.eventWebhooks.net_authorize_customer_subscription_suspended') === True){
             New \App\WebhookJobs\NetAuthorizeCustomerSubscriptionSuspended($eventPayload);
         }
     }
 
     public function terminated($eventPayload){
-        $this->message("terminated subscription works!!");
-        $this->message("Subscription is ". $this->subscriptionStatus . " for customerProfileId: ".$customerProfileId.". They WERE paying $".$amount);
         if(config('authorize-net-webhooks.eventWebhooks.net_authorize_customer_subscription_terminated') === True){
             New \App\WebhookJobs\NetAuthorizeCustomerSubscriptionTerminated($eventPayload);
         }
     }
 
     public function updated($eventPayload){
-        $this->message("updated subscription works!!");
         if(config('authorize-net-webhooks.eventWebhooks.net_authorize_customer_subscription_updated') === True){
             New \App\WebhookJobs\NetAuthorizeCustomerSubscriptionUpdated($eventPayload);
         }
@@ -97,18 +90,5 @@ class SubscriptionEventRepo
         } else{
             $this->message("Subscription is ". $subscriptionStatus . " for customerProfileId: ".$customerProfileId);
         }
-    }
-
-    public function message($text){
-        $url1 = "https://api.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text=";
-        $url = $url1 . $text;
-        $ch = curl_init();
-        $optArray = array(
-                CURLOPT_URL => $url,
-                CURLOPT_RETURNTRANSFER => true
-        );
-        curl_setopt_array($ch, $optArray);
-        $result = curl_exec($ch);
-        curl_close($ch);
     }
 }
