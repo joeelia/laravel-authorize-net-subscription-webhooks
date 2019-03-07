@@ -1,4 +1,4 @@
-# Very short description of the package
+![Laravel Authorize.Net](https://github.com/joeelia/laravel-authorize-net-subscription-webhooks/blob/master/laravel-authorize-net-logo.png?raw=true)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/joeelia/laravel-authorize-net-subscription-webhooks.svg?style=flat-square)](https://packagist.org/packages/joeelia/laravel-authorize-net-subscription-webhooks)
 [![Build Status](https://img.shields.io/travis/joeelia/laravel-authorize-net-subscription-webhooks/master.svg?style=flat-square)](https://travis-ci.org/joeelia/laravel-authorize-net-subscription-webhooks)
