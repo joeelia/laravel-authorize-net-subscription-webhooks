@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/joeelia/laravel-authorize-net-subscription-webhooks.svg?style=flat-square)](https://scrutinizer-ci.com/g/joeelia/laravel-authorize-net-subscription-webhooks)
 [![Total Downloads](https://img.shields.io/packagist/dt/joeelia/laravel-authorize-net-subscription-webhooks.svg?style=flat-square)](https://packagist.org/packages/joeelia/laravel-authorize-net-subscription-webhooks)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Control user's paid subscriptions with Authorize.net webhooks.
 
 ## Installation
 
